@@ -47,20 +47,25 @@ number} of a graph $G$, denoted by $\obs(G)$, is the minimum value of $h$
 such that $G$ has an $h$-obstacle representation.\footnote{Note that
 this definition of obstacle representation is more generous than that of Alpert, Koch, and Laison \cite{alpert.koch.ea:obstacle}, which requires that the obstacles be polygonal and that the
 set of points determined by vertices of the obstacles and the image of $\varphi$ not contain 3 collinear points. Since the current
-paper proves a lower-bound on the obstacle number, this lower bound
+paper proves a lower bound on the obstacle number, this lower bound
 also applies to the original definition.}
 \note{Obstacles that intersect each other is fine.}
 \note{Changed $w(n)$ to $\obs(n)$}
 
 Note that obstacle representations of planar graphs using few obstacles
-often requires drawings of those graphs that are far from crossing free,
-as the surprising example in \figref{fivebyfive} shows.  This example,
-which shows a 1-obstacle representation of the $5\times 5$ grid graph,
-$G_{5\times 5}$, that was given to us by Fabrizio Frati. In this figure,
-the single obstacle is drawn as a shaded region. Since at least one
-obstacle is clearly necessary to represent any graph other than a complete
-graph, this proves that $\obs(G_{5\times 5}) = 1$.  (A similar drawing can
-be used to show that the $a\times b$, grid graph has obstacle number 1,
+often require drawings of those graphs that are far from crossing free.
+For example, any crossing-free drawing of the $5\times 5$ grid, $G_{5\times 5}$
+shown in the left part of \figref{fivebyfive} requires at least one
+obstacle in each of the sixteen internal faces (each of which has at
+least four sides).
+
+It is somewhat surprising, therefore, that $G_{5\times 5}$ has obstacle
+number 1.  The obstacle representation, illustrated on the right part of
+\figref{fivebyfive} was given to us by Fabrizio Frati. In this figure, the
+single obstacle is drawn as a shaded region. Since at least one obstacle
+is clearly necessary to represent any graph other than a complete graph,
+this proves that $\obs(G_{5\times 5}) = 1$.  (A similar drawing can be
+used to show that the $a\times b$, grid graph has obstacle number 1,
 for any integers $a,b>1$.)
 
 \begin{figure}[hbpt]
@@ -92,23 +97,23 @@ of a graph with $n$ vertices.
 
 For a graph $G=(V,E)$, we call elements of $\binom{V}{2}\setminus E$
 \emph{non-edges} of $G$.  The worst-case obstacle number $\obs(n)$ is
-obviously upper-bounded by $\binom{n}{2}\in O(n^2)$ since, by mapping
+obviously upper bounded by $\binom{n}{2}\in O(n^2)$ since, by mapping
 the vertices of $G$ onto a point set in sufficiently general position,
 one can place a small obstacle---even a single point---on the mid-point
-of each non-edge of $G$.  No upper-bound on $\obs(n)$ that is asymptotically
+of each non-edge of $G$.  No upper bound on $\obs(n)$ that is asymptotically
 better than $O(n^2)$ is known.
 
-More is known about lower-bounds on $\obs(n)$.  Alpert, Koch, and Laison \cite{alpert.koch.ea:obstacle}
+More is known about lower bounds on $\obs(n)$.  Alpert, Koch, and Laison \cite{alpert.koch.ea:obstacle}
 initially show that the worst-case obstacle number is
 $\Omega\left(\sqrt{\log n/\log\log n}\right)$ and posed as an open problem the question
 of determining if $\obs(n)\in\Omega(n)$.
-%\footnote{Alpert \etal's lower-bound uses the Erd\H{o}s-Szekeres convex
+%\footnote{Alpert \etal's lower bound uses the Erd\H{o}s-Szekeres convex
 %$n$-gon theorem and shows the existence of an $n$-vertex graph $G$
 %with $\obs(G)\ge \sqrt{\log n/\log\log n}$.}
 Mukkamala \etal\ \cite{mukkamala.pach.ea:graphs} showed that $\obs(n)\in
 \Omega(n/\log^2 n)$ and Mukkamala \etal\ \cite{mukkamala.pach.ea:lower}
 later increased this to $\obs(n)\in\Omega(n/\log n)$.  In the current paper,
-we up the lower-bound again by proving the following theorem:
+we up the lower bound again by proving the following theorem:
 \begin{thm}\thmlabel{main}
   For every integer $n>0$, $\obs(n)\in\Omega(n/(\log\log n)^2)$, i.e., there
   exist graphs, $G$, with $n$ vertices and $\obs(G)\in\Omega(n/(\log\log
@@ -127,29 +132,28 @@ graph on $n$ vertices has obstacle number at least $\Omega(n/(\log n)^2)$.
 Our proof trades off a lower probability for a higher obstacle number.
 When all is said and done, our proof shows that, with probability at least
 $1-2^{-\Omega(n\log n)}$, a random graph on $n$ vertices has obstacle
-number at least $n/(\log\log n)^2$.
+number at least $\Omega(n/(\log\log n)^2)$.
 
 \section{The Proof}
 
 Our proof strategy is an application of the probabilistic method
-\cite{alon.spencer:probabilistic}.  We consider the following experiment:
-We fix an arbitrary ordering, $\pi$, on the vertices of a graph, $G$,
-with vertex set $V=\{1,\ldots,n\}$ and then select each potential edge
-$uw\in\binom{V}{2}$ to appear independently with probability $1/2$.
-We show that the probability, $p$, that $G$ can be drawn with its
-vertices in ordered left-to-right according to $\pi$, to allow for
-an obstacle representation with few obstacles is smaller than $1/n!$.
-Since the number of possible orderings of $G$'s vertices is only $n!$,
-and $pn!<1$, the union bound implies that there exists at least one
-graph $G'$ for which no ordering allows for an obstacle representation
-with few obstacles.  In other words, $\obs(G')$ is large.
+\cite{alon.spencer:probabilistic}.  We fix an arbitrary ordering, $\pi$,
+on the vertices of an Erd\H{o}s--R\'enyi random graph, $G=G_{n,\frac
+12}$.  We then show that it is very unlikely that there is an obstacle
+representation, $(\varphi, S)$ of $G$ such that $|S|\in o(n/(\log\log
+n)^2)$ and the lexicographic ordering of the points assigned to
+vertices by $\varphi$ agrees with the ordering given by $\pi$.  Here,
+``very unlikely'' means that this occurs with probability $p<1/n!$.
+Since there are only $n!$ possible orderings of $G'$s vertices, we then
+apply the union bound which shows that with probability $1-pn!>0$, there
+is is no obstacle representation of $G$ using $o(n/(\log\log n)^2)$ obstacles,
+i.e., $\obs(G) \in \Omega(n/(\log\log n)^2)$.
 
 \subsection{A Random Graph with a Fixed Ordering}
 
 We make use of the following theorem, due to Mukkamala, Pach, and
 P\'alv\"olgyi \cite[Theorem~1]{mukkamala.pach.ea:lower} about the number
-of $n$ vertex graphs with obstacle number at most $h$:\note{We do need $h\ge 1$. With $h=0$, the upper bound is $O(1)$, but there are $n+1$ graphs with
-\textbf{at most} $n$ vertices and obstacle number 0.}
+of $n$-vertex graphs with obstacle number at most $h$:
 \begin{thm}[Mukkamala, Pach, and P\'alv\"olgyi 2012]\thmlabel{pach-gang}
   For any $h\ge 1$, the number of graphs having $n$ vertices and
   obstacle number at most $h$ is at most $2^{O(hn\log^2 n)}$.
@@ -164,12 +168,14 @@ an obstacle representation with few obstacles.
 
 
 \begin{lem}\lemlabel{fixed}
-  Let $G=(V,E)$ be an Erd\H{o}s-R\'enyi random graph $G_{n,\frac{1}{2}}$,
-  let $\pi=\pi_1,\ldots,\pi_n$ be an ordering of the vertices
+  Let $G=(V,E)$ be an Erd\H{o}s--R\'enyi random graph $G_{n,\frac{1}{2}}$,
+  let $v_1,\ldots,v_n$ be an ordering of the vertices
   in $V$ that is independent of the choices of edges in $G$,
   and let $(\varphi, S)$ be an obstacle representation of $G$
   using the minimum number of obstacles subject to the constraint
-  the x-coordinate of $\varphi(\pi_{i})$ is less than that of $\varphi(\pi_{i+1})$ for all $i\in\{1,\ldots,n-1\}$.
+  that 
+  \[ \varphi(v_1)\prec \varphi(v_2)\prec \cdots\varphi(v_n) \enspace ,\]
+  where $\prec$ denotes lexicographic ordering of points.
   Then, for any constant $c>0$,
   \[
      \Pr\{|S| \in \Omega(n/(\log\log n)^2) \ge 1-e^{-cn\log n}  \enspace .
@@ -178,7 +184,7 @@ an obstacle representation with few obstacles.
 
 \begin{proof}
   Fix some integer $k=k(n)\in\omega_n(1)$ to be specified later and first
-  consider the subgraph $G_0$ of $G$ induced by the vertices $\pi_1,\ldots,\pi_k$.
+  consider the subgraph $G_0$ of $G$ induced by the vertices $v_1,\ldots,v_k$.
   applying \thmref{pach-gang} with $n=k$ and $h=\alpha k/\log^2 k$,
   we obtain
   \begin{equation}
@@ -189,28 +195,25 @@ an obstacle representation with few obstacles.
   for sufficiently small constants $\alpha,\beta > 0$.  Note that, if
   $\obs(G_0)\ge h$, then, in the obstacle representation $(\varphi,S)$,
   there must be at least $h-1$ obstacles of $S$ that are contained in the
-  convex hull of $P'$. In particular, these obstacles are contained in the
-  closed vertical strip bounded by vertical lines through $\varphi(\pi_1)$
-  and $\varphi(\pi_k)$.
-  
+  convex hull of $\varphi(v_1),\ldots,\varphi(v_k)$.   
+
   Let $m=\lfloor n/k\rfloor$ and notice that the preceding argument
-  applies to any subset $\pi_{ki+1},\ldots,\pi_{(k+1)i}$ of vertices,
-  for any $i\in\{0,\ldots,m-1\}$.  That is, \Eqref{g1} shows that, with
-  probability at least $1-2^{-\Omega(k^2)}$, the obstacle number of the
-  subgraph induced by $\pi_{ki+1},\ldots,\pi_{(k+1)i}$ is $\Omega(k/\log^2
-  k)$.  If this occurs, then $S$ has $\Omega(k/\log^2 k)$ obstacles
-  that are completely contained in the slab $s_i$ bounded by vertical
-  lines through $\varphi(\pi_{ki+1})$ and $\varphi(\pi_{(k+1)i})$.
-  These obstacles are therefore disjoint from any other obstacles
-  contained in any other slab $s_j$, $j\neq i$.
-  
+  applies to any subset $V_i=\{v_{ki+1},\ldots,v_{(k+1)i}\}$ of vertices,
+  for any $i\in\{0,\ldots,m-1\}$.  That is, \Eqref{g1} shows that,
+  with probability at least $1-2^{-\Omega(k^2)}$, the obstacle number of
+  the subgraph $G_i$ induced by $V_i$ is $\Omega(k/\log^2 k)$.  If this
+  occurs, then $S$ has $\Omega(k/\log^2 k)$ obstacles that are completely
+  contained in the convex hull of $V_i$.  In particular, the obstacles
+  contained in the convex hull of $V_i$ are different from the obstacles
+  contained in the convex hull of $V_j$, for all $j\neq i$.
+
   We are proving a lower bound on the number of obstacles, so we are
-  worried about the case where the number of slabs that do \emph{not}
-  contain at least $\alpha k/\log^2 k$ obstacles exceeds $m/e$.\footnote{Euler's constant $e=\lim_{n\rightarrow \infty} (1-1/n)^n$ is just a convenient
-  constant to use here.}
-  The number of slabs, $M$, not containing at least $\alpha k/\log^2 k$
-  obstacles is dominated by a binomial$(m,e^{-\beta k^2})$ random
-  variable.
+  worried about the case where the number of convex hulls that do
+  \emph{not} contain at least $\alpha k/\log^2 k$ obstacles exceeds
+  $m/e$.\footnote{Euler's constant $e=\lim_{n\rightarrow \infty}
+  (1-1/n)^n$ is just a convenient constant to use here.} The number of
+  convex hulls, $M$, not containing at least $\alpha k/\log^2 k$ obstacles
+  is dominated by a binomial$(m,e^{-\beta k^2})$ random variable.
   Using Chernoff's bound on the tail of a binomial random
   variable,\footnote{%
     Chernoff's Bound: For any binomial$(m,p)$ random variable, $B$,
@@ -250,24 +253,22 @@ For completeness, we now spell out the proof of \thmref{main}.
 
 \begin{proof}[Proof of \thmref{main}]
   Let $G=(V,E)$ be an Erd\H{o}s-R\'enyi random graph with $n$ vertices
-  with vertex set $V=\{1,\ldots,n\}$.  Observe that any obstacle
-  representation of $G$ can be rotated so that no two vertices
-  are assigned the same $x$-coordinate. Thus, for every obstacle
-  representation $(\varphi, S)$ of $G$, there is a corresponding ordering,
-  $\pi$, on the vertices of $G$.\footnote{If we always rotate the representation slightly counterclockwise, then the ordering corresponds to the lexicographic ordering of the points assigned by $\varphi$.}
+  with vertex set $V=\{1,\ldots,n\}$.  For every obstacle representation
+  $(\varphi, S)$ of $G$, there is an ordering on $V$ given by the
+  lexicographic ordering of the points $\{\varphi(v): v\in V\}$.
 
   By \lemref{fixed}, the probability that a particular such ordering,
-  $\pi$, allows an obstacle representation using $o(n/(\log\log n)^2)$
-  obstacles is at most $p\le e^{-cn\log n}$ for every constant $c>0$. In
-  particular, for sufficiently large $c$, $p < 1/n!$.  By the union
-  bound the probability that there is any ordering $\pi$ that supports an
-  obstacle representation of $G$ with $o(n/(\log\log n)^2)$ obstacles is
-  at most
+  $v_1,\ldots,v_n$, allows an obstacle representation using $o(n/(\log\log
+  n)^2)$ obstacles is at most $p\le e^{-cn\log n}$ for every constant
+  $c>0$. In particular, for sufficiently large $c$, $p < 1/n!$.  By the
+  union bound the probability that there is any ordering that supports
+  an obstacle representation of $G$ with $o(n/(\log\log n)^2)$ obstacles
+  is at most
   \[
      \hat p = p\cdot n! < 1 \enspace .
   \]
-  We deduce that there exists some some graph,
-  $G'$, with $\obs(G')\in \Omega(n/(\log\log n)^2)$.
+  We deduce that there exists some graph, $G'$, with $\obs(G')\in
+  \Omega(n/(\log\log n)^2)$.
 \end{proof}
 
 
@@ -279,7 +280,7 @@ For completeness, we now spell out the proof of \thmref{main}.
 %method.  \lemref{fixed} shows that the probability, $p$, that a
 %particular drawing of the random graph $G$ is able to yield an obstacle
 %representation with $o(n/(\log\log n)^2)$ obstacles is extremely small.
-%The remaining difficulty is establishing a sufficiently strong upper-bound
+%The remaining difficulty is establishing a sufficiently strong upper bound
 %on $N$, the number of drawings of $G$. In actuality, the number of
 %drawings is uncountable.  However, we are interested in the number of
 %``combinatorially distinct'' drawings.  In particular, we would like
@@ -577,69 +578,71 @@ For completeness, we now spell out the proof of \thmref{main}.
 %\end{proof}
 %
 %
-%\section{Remarks}
-%
-%Our proof of \thmref{main} relates the problem of counting the number
-%of $n$-vertex graphs with obstacle number at most $h$ to the problem of
-%determining the worst-case obstacle number of a graph with $n$ vertices.
-%Currently, we use Mukkamala \etal's \thmref{pach-gang}, which proves an
-%upper-bound of $e^{O(hn\log^2 n)}$ on the number of $n$ vertex graphs
-%with obstacle number at most $h$.  Interestingly, their argument is an
+\section{Remarks}
+
+Our proof of \thmref{main} relates the problem of counting the number
+of $n$-vertex graphs with obstacle number at most $h$ to the problem of
+determining the worst-case obstacle number of a graph with $n$ vertices.
+Currently, we use \thmref{pach-gang} of Mukkamala \etal\ \cite{mukkamala.pach.ea:graphs},
+which proves an
+upper bound of $e^{O(hn\log^2 n)}$ on the number of $n$-vertex graphs
+with obstacle number at most $h$.
+%Interestingly, their argument is an
 %encoding argument, which shows that any such graph can be encoded as the
 %order type of a set of $O(hn\log n)$ points followed by a list of the
 %points in this set that make up the vertices of the (polygonal) obstacles.
 %Their argument needs only order types (as opposed to super-order types)
 %since the point set that they specify includes the vertices of the
 %obstacles.
-%
-%Any improvement on the upper-bound for the counting problem will
-%immediately translate into an improved lower-bound on the worst-case
-%obstacle number.  Let $f(h,k)$ denote the number of $k$-vertex graphs
-%with obstacle number at most $h$ and let 
-%\[  
-%   \hat h(k) = \max\left\{h:f(h,k) \le 2^{n^2/4}\right\} \enspace . 
-%\]
-%(The quantity $\hat h(k)$ is chosen so that a random graph
-%on $k$ vertices has probability at most $2^{-\Omega(k^2)}$ of having obstacle
-%number less than $\hat h(k)$.)
-%Our proof technique shows that
-%there exist graphs with obstacle number at least $n\hat{h}(c\log n)/(c\log
-%n)$. (\thmref{pach-gang} shows that $\hat{h}(k)\in\Omega(k/(\log k)^2)$.)
-%
-%We note that our technique gives an improved lower bound until someone is
-%able to prove that $\hat h(n)\in\Omega(n)$.  At this point, a simpler
-%argument (see \cite[Theorem~3]{mukkamala.pach.ea:graphs}) shows that
-%there exists graphs with obstacle number at least $\hat{h}(n)$.
-%
-%We conjecture that improved upper-bounds on $f(h,n)$ that reduce the
-%dependence on $h$ are the way forward:
-%\begin{conj}\conjlabel{h}
-%  $f(h,n) \le 2^{g(n)\cdot o(h)}$, where $g(n)\in O(n\log^2 n)$.
-%\end{conj}
-%In support of this conjecture, we observe that an upper bound of the
-%form $f(1,n)\le 2^{g(n)}$ is sufficient to give the crude upper bound
-%$f(h,n)\le 2^{h\cdot g(n)}$ since any graph with an $h$-obstacle
-%representation is the common intersection of $h$ graphs that each
-%have a 1-obstacle representation.  That is, if $\obs(G)\le h$, then
-%there exists $E_1,\ldots,E_h$ such that $G=(V,\bigcap_{i=1}^h E_i)$
-%and $\obs(V,E_i)=1$ for all $i\in \{1,\ldots,h\}$.  This seems like a
-%very crude upper bound in which many graphs are counted multiple times.
-%\conjref{h} asserts that this argument overestimates the dependence on $h$.
-%
-%
-\section*{Acknowledgements}
 
-A previous draft of this article proved a version \lemref{fixed} for a
-fixed drawing, $\varphi$, and then went to great lengths to argue that the
-number of combinatorially distinct drawings was at most $2^{O(n\log n)}$.
-We are grateful to an anonymous referee who pointed out that the proof
-of \lemref{fixed} also holds when only the left-to-right ordering, $\pi$,
-of the vertices is fixed, thereby simplifying the paper tremendously.
+Any improvement on the upper bound for the counting problem will
+immediately translate into an improved lower bound on the worst-case
+obstacle number.  Let $f(h,k)$ denote the number of $k$-vertex graphs
+with obstacle number at most $h$ and let 
+\[  
+   \hat h(k) = \max\left\{h:f(h,k) \le 2^{k^2/4}\right\} \enspace . 
+\]
+The quantity $\hat h(k)$ is chosen so that a random graph
+on $k$ vertices has probability at most $2^{-\Omega(k^2)}$ of having obstacle
+number less than $\hat h(k)$; \thmref{pach-gang} shows that $\hat{h}(k)\in\Omega(k/(\log k)^2)$.
+Our proof of \lemref{fixed} shows that
+there exist graphs with obstacle number at least $n\hat{h}(c\log n)/(c\log
+n)$. 
+
+We note that our technique gives an improved lower bound until someone is
+able to prove that $\hat h(n)\in\Omega(n)$.  At this point, our approach
+gives a lower bound worse than the trivial lower bound $\hat{h}(n)$.
+
+We conjecture that improved upper bounds on $f(h,n)$ that reduce the
+dependence on $h$ are the way forward:
+\begin{conj}\conjlabel{h}
+  $f(h,n) \le 2^{g(n)\cdot o(h)}$, where $g(n)\in O(n\log^2 n)$.
+\end{conj}
+In support of this conjecture, we observe that an upper bound of the
+form $f(1,n)\le 2^{g(n)}$ is sufficient to give the crude upper bound
+$f(h,n)\le 2^{h\cdot g(n)}$ since any graph with an $h$-obstacle
+representation is the common intersection of $h$ graphs that each
+have a 1-obstacle representation.  That is, if $\obs(G)\le h$, then
+there exists $E_1,\ldots,E_h$ such that $G=(V,\bigcap_{i=1}^h E_i)$
+and $\obs(V,E_i)=1$ for all $i\in \{1,\ldots,h\}$.  This seems like a
+very crude upper bound in which many graphs are counted multiple times.
+\conjref{h} asserts that this argument overestimates the dependence on $h$.
+
+
+\section*{Acknowledgements}
 
 This work was initiated at the \emph{Workshop on Geometry and Graphs},
 held at the Bellairs Research Institute, March 10-15, 2013.  We are
 grateful to the other workshop participants for providing a stimulating
 research environment.
+
+A previous draft of this article proved a version \lemref{fixed} for a
+fixed drawing, $\varphi$, and then went to great lengths to argue that the
+number of combinatorially distinct drawings was at most $2^{O(n\log n)}$.
+We are grateful to an anonymous referee who pointed out that the proof
+of \lemref{fixed} also holds when only the lexicographic ordering
+of the vertices is fixed, thereby eliminating the need to bound the number
+of combinatorially equivalent drawings.
 
 %\note{I checked the accents on Sari\"oz and P\'alv\"olgyi. They use \textbackslash" in their papers.}
 
