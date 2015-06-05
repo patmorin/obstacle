@@ -1,23 +1,37 @@
-\documentclass{patmorin}
+\documentclass[12pt]{article}
+\usepackage{e-jc}
+\usepackage{amsmath,amsthm,amsopn}
 \usepackage{pat}
-\usepackage{amsopn}
 \listfiles
+
+\allowdisplaybreaks
 
 \DeclareMathOperator{\obs}{obs}
 \newcommand{\x}{\mathsf{x}}
 \newcommand{\y}{\mathsf{y}}
 
-\title{\MakeUppercase{On Obstacle Numbers}}
-\author{Vida Dujmovi\'c and Pat Morin}
-
+\title{\bf On obstacle numbers}
+\author{Vida Dujmovi\'c\thanks{Supported by NSERC and MRI} \\
+        {\small Department of Computer Science and Electrical Engineering}\\[-0.8ex]
+        {\small University of Ottawa}\\[-0.8ex]
+        {\small Ottawa, Canada} \\
+        {\small\tt vida.dujmovic@uottawa.ca}\\
+        \and
+        Pat Morin\thanks{Supported by NSERC}\\
+        {\small School of Computer Science}\\[-0.8ex]
+        {\small Carleton University}\\[-0.8ex]
+        {\small Ottawa, Canada} \\
+        {\small\tt morin@scs.carleton.ca}}
 \renewcommand{\note}[1]{}
 
+\date{\dateline{May 1, 2014}{Apr 5, 2015}\\
+\small Mathematics Subject Classifications: 05C35, 05C62}
+
 \begin{document}
-\begin{titlepage}
 \maketitle
 
 \begin{abstract}
-\setlength{\baselineskip}{16.8pt}
+%\setlength{\baselineskip}{16.8pt}
 The obstacle number is a new graph parameter introduced by Alpert, Koch,
 and Laison (2010).  Mukkamala \etal\ (2012) show that there exist graphs
 with $n$ vertices having obstacle number in $\Omega(n/\log n)$. In this
@@ -26,12 +40,11 @@ makes use of an upper bound of Mukkamala \etal\ on the number of graphs
 having obstacle number at most $h$ in such a way that any subsequent
 improvements to their upper bound will improve our lower bound.
 \end{abstract}
-\end{titlepage}
 
 
 \section{Introduction}
 
-\setlength{\baselineskip}{16.8pt}
+%\setlength{\baselineskip}{16.8pt}
 The obstacle number is a new graph parameter introduced by Alpert, Koch,
 and Laison \cite{alpert.koch.ea:obstacle}.  Let $G=(V,E)$ be a graph,
 let $\varphi:V\to \R^2$ be a one-to-one mapping of the vertices of
